@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "332667514675",
+    "firebase_url": "https://kdichon-healthapp-default-rtdb.firebaseio.com",
+    "project_id": "kdichon-healthapp",
+    "storage_bucket": "kdichon-healthapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332667514675:android:7c553228ac13f9b54a5846",
+        "android_client_info": {
+          "package_name": "com.medicalapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjT_0cYsY_c3c6uIT6IL6Z_hDBFC-8XjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332667514675:android:00c04dfe5d45ce064a5846",
+        "android_client_info": {
+          "package_name": "com.theproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjT_0cYsY_c3c6uIT6IL6Z_hDBFC-8XjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332667514675:android:3e8d890bcb2623f74a5846",
+        "android_client_info": {
+          "package_name": "com.zouti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjT_0cYsY_c3c6uIT6IL6Z_hDBFC-8XjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
