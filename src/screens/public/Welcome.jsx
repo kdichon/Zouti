@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Button from '../../components/Button';
 import COLORS from '../../core/constants/colors';
 
-const Home = () => {
+const Welcome = () => {
   return (
     <View
       style={{
@@ -165,4 +165,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Welcome;

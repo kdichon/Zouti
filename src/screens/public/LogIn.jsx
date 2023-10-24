@@ -28,7 +28,6 @@ const LogIn = ({navigation}) => {
   };
 
   return (
-    // <Background>
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <View style={{flex: 1, marginHorizontal: 22}}>
         <View style={{marginVertical: 22}}>
@@ -146,7 +145,12 @@ const LogIn = ({navigation}) => {
             color={isChecked ? COLORS.primary : undefined}
           />
 
-          <Text>Remenber Me</Text>
+          <Text
+            onPress={() =>
+              setIsChecked(!isChecked) && console.log('Ok pour les CGV')
+            }>
+            Remenber Me
+          </Text>
         </View>
 
         <Button
@@ -182,7 +186,6 @@ const LogIn = ({navigation}) => {
         </View>
       </View>
     </SafeAreaView>
-    // </Background>
   );
 };
 

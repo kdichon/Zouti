@@ -9,7 +9,7 @@ import ProfileScreen from '../private/ProfileScreen';
 import SigninScreen from '../public/SigninScreen';
 import SignupScreen from '../public/SignupScreen';
 import {isUser, notUser} from '../redux/userReducer';
-import {Home} from '../../src/screens/private';
+import {Home, Profile} from '../../src/screens/private';
 import {LogIn, LogOut} from '../../src/screens/public';
 
 const Stack = createNativeStackNavigator();
@@ -38,18 +38,18 @@ const RouteDavisScreen = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={user ? 'HomeTest' : 'SignIn'}
+        initialRouteName={user ? 'Profile' : 'SignIn'}
         screenOptions={{headerShown: false}}>
         {user ? (
           <>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="HomeTest" component={Home} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="Profile" component={Profile} />
             {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
           </>
         ) : (
           <>
-            <Stack.Screen name="SignIn" component={SigninScreen} />
+            <Stack.Screen name="SignIn" component={LogIn} />
             <Stack.Screen name="SignUp" component={LogOut} />
           </>
         )}
