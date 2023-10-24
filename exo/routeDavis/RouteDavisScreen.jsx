@@ -38,7 +38,7 @@ const RouteDavisScreen = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={user ? 'Home' : 'SignIn'}
+        initialRouteName={user ? 'HomeTest' : 'SignIn'}
         screenOptions={{headerShown: false}}>
         {user ? (
           <>
@@ -49,7 +49,7 @@ const RouteDavisScreen = () => {
           </>
         ) : (
           <>
-            <Stack.Screen name="SignIn" component={LogIn} />
+            <Stack.Screen name="SignIn" component={SigninScreen} />
             <Stack.Screen name="SignUp" component={LogOut} />
           </>
         )}

@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
 import COLORS from '../../core/constants/colors';
 import Button from '../../core/constants/Button';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const LogOut = ({navigation}) => {
   // Constantes pour le formulaire
@@ -13,9 +15,30 @@ const LogOut = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // Booleen pour l'affichage du password
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [isPasswordShown, setIsPasswordShown] = useState(true);
   // Booléen pour la validation des CGV
   const [isChecked, setIsChecked] = useState(false);
+
+  const SignUp = async () => {
+    try {
+      console.log(prefix + phone, email, password);
+      if (email != '' && password != '') {
+        console.log('OK');
+        // Déstructuration pour trouver directement
+        const {
+          user: {uid},
+        } = await auth().createUserWithEmailAndPassword(email.trim(), password);
+        // const uid = userCredential.uid;
+        // Enregistrement de l'utilisateur en base à l'aide de son uid de Firebase
+        await firestore()
+          .collection('userinformations')
+          .doc(uid)
+          .set({email: email, phonenumber: prefix + phone});
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
@@ -175,7 +198,12 @@ const LogOut = ({navigation}) => {
             color={isChecked ? COLORS.primary : undefined}
           />
 
-          <Text>I aggree to the terms and conditions</Text>
+          <Text
+            onPress={() =>
+              setIsChecked(!isChecked) && console.log('Ok pour les CGV')
+            }>
+            I aggree to the terms and conditions
+          </Text>
         </View>
 
         <Button
@@ -185,6 +213,7 @@ const LogOut = ({navigation}) => {
             marginTop: 18,
             marginBottom: 4,
           }}
+          onPress={SignUp}
         />
 
         <View

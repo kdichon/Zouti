@@ -5,13 +5,16 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
 import COLORS from '../../core/constants/colors';
 import Button from '../../core/constants/Button';
-import Background from '../../components/Background';
+import auth from '@react-native-firebase/auth';
 
 const LogIn = ({navigation}) => {
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [isPasswordShown, setIsPasswordShown] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
 
-  const login_User = async () => {
+  const SignIn = async () => {
     try {
       console.log(email, password);
       if (email != '' && password != '') {
@@ -73,6 +76,8 @@ const LogIn = ({navigation}) => {
               placeholder="Enter your email address"
               placeholderTextColor={COLORS.black}
               keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
               style={{
                 width: '100%',
               }}
@@ -105,6 +110,8 @@ const LogIn = ({navigation}) => {
               placeholder="Enter your password"
               placeholderTextColor={COLORS.black}
               secureTextEntry={isPasswordShown}
+              value={password}
+              onChangeText={setPassword}
               style={{
                 width: '100%',
               }}
@@ -149,6 +156,7 @@ const LogIn = ({navigation}) => {
             marginTop: 18,
             marginBottom: 4,
           }}
+          onPress={SignIn}
         />
 
         <View

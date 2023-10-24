@@ -12,9 +12,11 @@ const ProfileScreen = () => {
   const [phone, setPhone] = useState();
   // Lecture du State du store Redux
   const userId = useSelector(state => state.user);
-  console.log(userId);
+  // console.log(userId);
 
-  const Update = async () => {
+  const Update = async navigation => {
+    console.log(userId, fname, lname, phonenumber, country);
+
     const snapNewUser = await firestore()
       .collection('userinformations')
       .doc(userId)
@@ -24,7 +26,7 @@ const ProfileScreen = () => {
         phonenumber: phone,
         country: country,
       });
-    console.log(snapNewUser.exists, userId, fname, lname, phonenumber, country);
+    console.log(userId, fname, lname, phonenumber, country);
     console.log(snapNewUser.data());
     setEmail(snapUser.data().email);
     setFname(snapUser.data().firstname);
@@ -46,6 +48,8 @@ const ProfileScreen = () => {
     setCountry(snapUser.data().country);
   };
 
+  const ChooseFile = () => {};
+
   useEffect(() => {
     Read();
   }, []);
@@ -62,6 +66,7 @@ const ProfileScreen = () => {
       />
       <TextInput placeholder="phone" number={phone} onChangeText={setPhone} />
       <Button title="Update" onPress={Update} />
+      <Button icon="add" onPress={() => {}} />
     </ScrollView>
   );
 };
