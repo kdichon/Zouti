@@ -1,24 +1,31 @@
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Pressable, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Ionicons} from 'react-nativevector-icons';
-// import Checkbox from 'expo-checkbox';
-import Button from '../components/Button';
-import COLORS from '../../constants/colors';
-import {Checkbox} from '@mui/material';
+import Icon from 'react-native-vector-icons/Ionicons';
+import CheckBox from '@react-native-community/checkbox';
+import COLORS from '../../core/constants/colors';
+import Button from '../../core/constants/Button';
+import Background from '../../components/Background';
 
 const LogIn = ({navigation}) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
+  const login_User = async () => {
+    try {
+      console.log(email, password);
+      if (email != '' && password != '') {
+        console.log('OK');
+
+        await auth().signInWithEmailAndPassword(email.trim(), password);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
+    // <Background>
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <View style={{flex: 1, marginHorizontal: 22}}>
         <View style={{marginVertical: 22}}>
@@ -110,9 +117,9 @@ const LogIn = ({navigation}) => {
                 right: 12,
               }}>
               {isPasswordShown == true ? (
-                <Ionicons name="eye-off" size={24} color={COLORS.black} />
+                <Icon name="eye-off" size={24} color={COLORS.black} />
               ) : (
-                <Ionicons name="eye" size={24} color={COLORS.black} />
+                <Icon name="eye" size={24} color={COLORS.black} />
               )}
             </TouchableOpacity>
           </View>
@@ -121,12 +128,14 @@ const LogIn = ({navigation}) => {
         <View
           style={{
             flexDirection: 'row',
+            alignItems: 'center',
             marginVertical: 6,
           }}>
-          <Checkbox
+          <CheckBox
             style={{marginRight: 8}}
+            disabled={false}
             value={isChecked}
-            onValueChange={setIsChecked}
+            onValueChange={newValue => setIsChecked(newValue)}
             color={isChecked ? COLORS.primary : undefined}
           />
 
@@ -145,96 +154,13 @@ const LogIn = ({navigation}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'center',
-            marginVertical: 20,
-          }}>
-          <View
-            style={{
-              flex: 1,
-              height: 1,
-              backgroundColor: COLORS.grey,
-              marginHorizontal: 10,
-            }}
-          />
-          <Text style={{fontSize: 14}}>Or Login with</Text>
-          <View
-            style={{
-              flex: 1,
-              height: 1,
-              backgroundColor: COLORS.grey,
-              marginHorizontal: 10,
-            }}
-          />
-        </View>
-
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-          }}>
-          <TouchableOpacity
-            onPress={() => console.log('Pressed')}
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'row',
-              height: 52,
-              borderWidth: 1,
-              borderColor: COLORS.grey,
-              marginRight: 4,
-              borderRadius: 10,
-            }}>
-            <Image
-              source={require('../assets/facebook.png')}
-              style={{
-                height: 36,
-                width: 36,
-                marginRight: 8,
-              }}
-              resizeMode="contain"
-            />
-
-            <Text>Facebook</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => console.log('Pressed')}
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'row',
-              height: 52,
-              borderWidth: 1,
-              borderColor: COLORS.grey,
-              marginRight: 4,
-              borderRadius: 10,
-            }}>
-            <Image
-              source={require('../assets/google.png')}
-              style={{
-                height: 36,
-                width: 36,
-                marginRight: 8,
-              }}
-              resizeMode="contain"
-            />
-
-            <Text>Google</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={{
-            flexDirection: 'row',
             justifyContent: 'center',
             marginVertical: 22,
           }}>
           <Text style={{fontSize: 16, color: COLORS.black}}>
             Don't have an account ?{' '}
           </Text>
-          <Pressable onPress={() => navigation.navigate('Signup')}>
+          <Pressable onPress={() => navigation.navigate('SignUp')}>
             <Text
               style={{
                 fontSize: 16,
@@ -248,6 +174,7 @@ const LogIn = ({navigation}) => {
         </View>
       </View>
     </SafeAreaView>
+    // </Background>
   );
 };
 

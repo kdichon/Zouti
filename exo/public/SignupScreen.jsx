@@ -13,14 +13,15 @@ const SignupScreen = ({navigation}) => {
       console.log(nickname, email, password);
       if (email != '' && password != '') {
         console.log('OK');
-        const user = await auth().createUserWithEmailAndPassword(
-          email,
+        const userCredential = await auth().createUserWithEmailAndPassword(
+          email.trim(),
           password,
         );
+        const uid = userCredential.uid;
         // Enregistrement de l'utilisateur en base à l'aide de son uid de Firebase
         await firestore()
-          .collection('users')
-          .doc(user.uid)
+          .collection('userinformations')
+          .doc(uid)
           .set({email: email, nickname: nickname});
       }
     } catch (error) {
