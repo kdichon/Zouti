@@ -48,7 +48,9 @@ const ProfileScreen = () => {
     setCountry(snapUser.data().country);
   };
 
-  const ChooseFile = () => {};
+  const chooseFile = () => {
+    console.log('choisir un fichier');
+  };
 
   useEffect(() => {
     Read();
@@ -66,7 +68,7 @@ const ProfileScreen = () => {
       />
       <TextInput placeholder="phone" number={phone} onChangeText={setPhone} />
       <Button title="Update" onPress={Update} />
-      <Button icon="add" onPress={() => {}} />
+      <Button icon="add" onPress={chooseFile} />
     </ScrollView>
   );
 };
