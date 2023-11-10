@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Modal, Button, StyleSheet} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 
-const GPSDataMap = ({data}) => {
+const GPSDataMap = ({navigation, data}) => {
   const [selectedData, setSelectedData] = useState(null);
 
   const handleMarkerPress = data => {

@@ -11,7 +11,7 @@ const Welcome = () => {
         flex: 1,
       }}>
       {/* colors={[COLORS.secondary, COLORS.primary]}> */}
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'cyan'}}>
         <View>
           <Image
             source={require('./../../assets/hero1.jpg')}

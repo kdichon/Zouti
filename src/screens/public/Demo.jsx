@@ -1,10 +1,10 @@
 // Import des modules nécessaires
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
-import DataStore from './DataStore'; // Assurez-vous que DataStore est correctement importé
+// import DataStore from '../../core/DataStore'; // Assurez-vous que DataStore est correctement importé
 
 // Créez une instance de la classe DataStore
-const dataStore = new DataStore();
+// const dataStore = new DataStore();
 
 // Composant principal de l'application
 const Demo = () => {
@@ -65,8 +65,6 @@ const Demo = () => {
   );
 };
 
-export default Demo;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -80,3 +78,5 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
+
+export default Demo;

@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
-import DataStore from './DataStore';
+import DataStore from '../core/DataStore';
 
 const ImeiUpdate = ({route, navigation}) => {
   const {imeiId} = route.params;
   const [imeiData, setImeiData] = useState({});
   const [updatedData, setUpdatedData] = useState({});
-  const dataStore = new DataStore();
+  const DataStore = new DataStore();
 
   useEffect(() => {
     // Récupérez les données du numéro IMEI à partir de la base de données en utilisant l'ID

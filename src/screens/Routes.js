@@ -5,11 +5,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {isUser, notUser} from '../../exo/redux/userReducer';
 import auth from '@react-native-firebase/auth';
 import {NavigationContainer} from '@react-navigation/native';
-import {LogIn, LogOut} from './public';
-import {Home, Profile} from './private';
+import {Demo, LogIn, LogOut, Welcome} from './public';
+import {Home, Profile, Settings} from './private';
 import HomeScreen from '../../exo/private/HomeScreen';
-import Settings from './private/Settings';
-import Welcome from './public/Welcome';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,7 +35,7 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={user ? 'Settings' : 'SignIn'}
+        initialRouteName={user ? 'Welcome' : 'SignIn'}
         screenOptions={{headerShown: false}}>
         {user ? (
           <>
@@ -45,12 +43,14 @@ const Routes = () => {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="Demo" component={Demo} />
           </>
         ) : (
           <>
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="SignIn" component={LogIn} />
             <Stack.Screen name="SignUp" component={LogOut} />
+            <Stack.Screen name="Demo" component={Demo} />
           </>
         )}
       </Stack.Navigator>

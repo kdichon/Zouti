@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
-import DataStore from './DataStore';
+import DataStore from '../core/DataStore';
+// import DataStore from './DataStore';
 
 const CustomerUpdate = ({route, navigation}) => {
   const {customerId} = route.params;

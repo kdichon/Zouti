@@ -1,5 +1,5 @@
 // DataStore.js
-import Medoo from 'medoo'; // Assurez-vous d'installer le package Medoo ou d'utiliser une alternative appropriée
+// import Medoo from 'medoo'; // Assurez-vous d'installer le package Medoo ou d'utiliser une alternative appropriée
 
 class DataStore {
   constructor() {

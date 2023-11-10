@@ -10,7 +10,7 @@ import {
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {MaterialIcons} from 'react-native-vector-icons';
-import {COLORS, SIZES, FONTS} from '../../core/theme';
+import {COLORS, SIZES, FONTS} from '../../../core/theme';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 const ImageProfile = require('./../../assets/hero1.jpg');
 const ImageCover = require('./../../assets/cover.jpg');

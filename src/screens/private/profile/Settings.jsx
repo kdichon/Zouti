@@ -1,8 +1,9 @@
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {COLORS, SIZES, FONTS} from '../../core/theme';
+import {COLORS, SIZES, FONTS} from '../../../core/theme';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import auth from '@react-native-firebase/auth';
 
 const Settings = ({navigation}) => {
   const navigateToEditProfile = () => {
@@ -33,6 +34,7 @@ const Settings = ({navigation}) => {
     console.log('Terms and Policies function');
   };
 
+  /*
   const navigateToFreeSpace = () => {
     console.log('Free Space function');
   };
@@ -40,6 +42,7 @@ const Settings = ({navigation}) => {
   const navigateToDateSaver = () => {
     console.log('Date saver');
   };
+  */
 
   const navigateToReportProblem = () => {
     console.log('Report a problem');
@@ -51,6 +54,7 @@ const Settings = ({navigation}) => {
 
   const logout = () => {
     console.log('Logout');
+    auth().signOut();
   };
 
   const accountItems = [
@@ -77,11 +81,12 @@ const Settings = ({navigation}) => {
     {icon: 'help-outline', text: 'Help & Support', action: navigateToSupport},
     {
       icon: 'info-outline',
-      text: 'Terms and Policies',
+      text: 'CGV',
       action: navigateToTermsAndPolicies,
     },
   ];
 
+  /*
   const cacheAndCellularItems = [
     {
       icon: 'delete-outline',
@@ -90,6 +95,7 @@ const Settings = ({navigation}) => {
     },
     {icon: 'save-alt', text: 'Date Saver', action: navigateToDateSaver},
   ];
+  */
 
   const actionsItems = [
     {
@@ -111,7 +117,7 @@ const Settings = ({navigation}) => {
         paddingLeft: 12,
         backgroundColor: COLORS.gray,
       }}>
-      <MaterialIcons name={icon} size={24} color="black" />
+      <MaterialIcons name={icon} size={32} color="black" />
       <Text
         style={{
           marginLeft: 36,
@@ -189,6 +195,7 @@ const Settings = ({navigation}) => {
         </View>
 
         {/* Cache & Cellular */}
+        {/* 
         <View style={{marginBottom: 12}}>
           <Text style={{...FONTS.h4, marginVertical: 10}}>
             Cache & Cellular{' '}
@@ -204,7 +211,8 @@ const Settings = ({navigation}) => {
               </React.Fragment>
             ))}
           </View>
-        </View>
+        </View> 
+        */}
 
         {/* Actions Settings */}
 

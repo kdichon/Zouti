@@ -1,4 +1,4 @@
-import {View, Text, Image, FlatList} from 'react-native';
+import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
 // import ItemFormation from '../../src/components/ItemFormation';
 // import ItemGF from '../../src/components/ItemGF';
@@ -7,13 +7,18 @@ import {Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 
 const HomeScreen = ({navigation}) => {
-  console.log(navigation);
+  console.log('HomeScreen -> ON');
 
   // const {user} = route.params;
 
   const Profile = () => {
     // auth().signOut();
-    navigation.navigate('Profile');
+    navigation.navigate('Settings');
+  };
+
+  const GpsData = () => {
+    // auth().signOut();
+    navigation.navigate('Settings');
   };
 
   const SignOut = () => {
@@ -36,15 +41,15 @@ const HomeScreen = ({navigation}) => {
           marginTop: 80,
           marginHorizontal: 10,
         }}>
-        <View onPress={() => navigation.navigate('Profile')}>
+        <TouchableOpacity onPress={Profile}>
           <Image
             source={require('./../asset/avatar1.jpeg')}
             style={{height: 60, width: 60, borderRadius: 40}}
           />
-        </View>
+        </TouchableOpacity>
 
         <View>
-          <Button icon="camera" onPress={Profile} />
+          <Button icon="setting" onPress={GpsData} />
           <Button icon="logout" onPress={SignOut}>
             Logout
           </Button>
