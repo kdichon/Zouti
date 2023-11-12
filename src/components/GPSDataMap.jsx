@@ -3,6 +3,7 @@ import {View, Text, Modal, Button, StyleSheet} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 
 const GPSDataMap = ({navigation, data}) => {
+  console.log(data);
   const [selectedData, setSelectedData] = useState(null);
 
   const handleMarkerPress = data => {
@@ -18,17 +19,20 @@ const GPSDataMap = ({navigation, data}) => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 0, // Latitude initiale
-          longitude: 0, // Longitude initiale
-          latitudeDelta: 0.0922, // Delta de latitude pour le zoom initial
-          longitudeDelta: 0.0421, // Delta de longitude pour le zoom initial
+          latitude: 14.6221916, // Latitude initiale
+          longitude: -61.0293332, // Longitude initiale
+          latitudeDelta: 0.00922, // Delta de latitude pour le zoom initial
+          longitudeDelta: 0.00421, // Delta de longitude pour le zoom initial
         }}>
-        {data.map(item => (
+        {data.map((item, index) => (
           <Marker
-            key={item.id}
-            coordinate={{latitude: item.latitude, longitude: item.longitude}}
-            title={`IMEI: ${item.imei}`}
-            description={`Vitesse: ${item.speed}`}
+            key={index}
+            coordinate={{
+              latitude: item?.gpsdata.latitude,
+              longitude: item?.gpsdata.longitude,
+            }}
+            title={`IMEI: ${item?.imei}`}
+            description={`Vitesse: ${item?.gpsdata.speed}`}
             onPress={() => handleMarkerPress(item)}
           />
         ))}
@@ -40,7 +44,7 @@ const GPSDataMap = ({navigation, data}) => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text>IMEI: {selectedData?.imei}</Text>
-            <Text>Vitesse: {selectedData?.speed}</Text>
+            <Text>Vitesse: {selectedData?.gpsdata.speed}</Text>
             <Button title="Fermer" onPress={closeModal} />
           </View>
         </View>
