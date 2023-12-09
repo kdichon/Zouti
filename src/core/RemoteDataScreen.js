@@ -10,23 +10,20 @@ class DataStore {
 
   async getCustomerData() {
     try {
-      const response = await axios.get(`${this.apiBaseUrl}/customers`);
+      const response = await axios.get(`${this.apiBaseUrl}/trackers`);
       return response.data;
     } catch (error) {
-      console.error('Erreur lors de la récupération des clients : ', error);
+      console.error('Erreur lors de la récupération des trackers : ', error);
       throw error;
     }
   }
 
   async getAdminData() {
     try {
-      const response = await axios.get(`${this.apiBaseUrl}/admins`);
+      const response = await axios.get(`${this.apiBaseUrl}/users`);
       return response.data;
     } catch (error) {
-      console.error(
-        'Erreur lors de la récupération des administrateurs : ',
-        error,
-      );
+      console.error('Erreur lors de la récupération des users : ', error);
       throw error;
     }
   }
@@ -38,7 +35,7 @@ const RemoteDataServer = () => {
   const [adminData, setAdminData] = useState([]);
 
   const serverHost = '37.187.1.92'; // Adresse IP ou nom de domaine de votre serveur
-  const serverPort = 8089; // Port de votre serveur
+  const serverPort = 8080; // Port de votre serveur
 
   useEffect(() => {
     const dataStore = new DataStore(serverHost, serverPort);
@@ -97,3 +94,23 @@ const RemoteDataServer = () => {
 };
 
 export default RemoteDataServer;
+
+// Exemple d'implémentation pour une requête POST
+export const postData = async (url = '', donnees = {}) => {
+  try {
+    const {data} = await axios.post(url, donnees, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    console.log('data', data);
+    return data;
+  } catch (error) {
+    console.error('Error in postData:', error);
+    if (error.response) {
+      console.error('Status:', error.response.status);
+      console.error('Data:', error.response.data);
+    }
+    throw error; // Rethrow the error to maintain the error chain.
+  }
+};

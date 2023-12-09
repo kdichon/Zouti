@@ -8,7 +8,7 @@ class DataStore {
       database_name: 'teltonika_gps',
       server: '37.187.1.92',
       username: 'root',
-      password: 'PBbshrQqozWr96RT!',
+      password: '414527@Hm!',
     });
   }
 

@@ -1,14 +1,15 @@
-import {View, Text, Pressable, TextInput, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { View, Text, Pressable, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
 import COLORS from '../../core/constants/colors';
 import Button from '../../core/constants/Button';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { postData } from '../../core/constants/api';
 
-const LogOut = ({navigation}) => {
+const LogOut = ({ navigation }) => {
   // Constantes pour le formulaire
   const [prefix, setPrefix] = useState('');
   const [phone, setPhone] = useState('');
@@ -21,19 +22,28 @@ const LogOut = ({navigation}) => {
 
   const SignUp = async () => {
     try {
-      console.log(prefix + phone, email, password);
+      // console.log(prefix + phone, email, password);
       if (email != '' && password != '') {
         console.log('OK');
         // Déstructuration pour trouver directement
         const {
-          user: {uid},
+          user: { uid },
         } = await auth().createUserWithEmailAndPassword(email.trim(), password);
         // const uid = userCredential.uid;
         // Enregistrement de l'utilisateur en base à l'aide de son uid de Firebase
         await firestore()
           .collection('userinformations')
           .doc(uid)
-          .set({email: email, phonenumber: prefix + phone});
+          .set({ email: email, phonenumber: prefix + phone });
+
+        // Enregistrement de l'utilisateur en base de données à l'aide de son uid avec l'API du serveur dédié.
+        const response = await postData('https://plantmed.jsprod.fr/api/user', {
+          name: name,
+          email: email,
+          uid: uid,
+          password: password
+        })
+        console.log('response', response)
       }
     } catch (error) {
       console.log(error);
@@ -41,9 +51,9 @@ const LogOut = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
-      <View style={{flex: 1, marginHorizontal: 22}}>
-        <View style={{marginVertical: 22}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+      <View style={{ flex: 1, marginHorizontal: 22 }}>
+        <View style={{ marginVertical: 22 }}>
           <Text
             style={{
               fontSize: 22,
@@ -55,7 +65,7 @@ const LogOut = ({navigation}) => {
           </Text>
         </View>
 
-        <View style={{marginBottom: 12}}>
+        <View style={{ marginBottom: 12 }}>
           <Text
             style={{
               fontSize: 16,
@@ -89,7 +99,7 @@ const LogOut = ({navigation}) => {
           </View>
         </View>
 
-        <View style={{marginBottom: 12}}>
+        <View style={{ marginBottom: 12 }}>
           <Text
             style={{
               fontSize: 16,
@@ -138,7 +148,7 @@ const LogOut = ({navigation}) => {
           </View>
         </View>
 
-        <View style={{marginBottom: 12}}>
+        <View style={{ marginBottom: 12 }}>
           <Text
             style={{
               fontSize: 16,
@@ -192,7 +202,7 @@ const LogOut = ({navigation}) => {
             marginVertical: 6,
           }}>
           <CheckBox
-            style={{marginRight: 8}}
+            style={{ marginRight: 8 }}
             value={isChecked}
             onValueChange={setIsChecked}
             color={isChecked ? COLORS.primary : undefined}
@@ -222,7 +232,7 @@ const LogOut = ({navigation}) => {
             justifyContent: 'center',
             marginVertical: 22,
           }}>
-          <Text style={{fontSize: 16, color: COLORS.black}}>
+          <Text style={{ fontSize: 16, color: COLORS.black }}>
             Already have an account
           </Text>
           <Pressable onPress={() => navigation.navigate('SignIn')}>
