@@ -688,6 +688,7 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+    flex: 1,
   },
   modalContainer: {
     flex: 1,
